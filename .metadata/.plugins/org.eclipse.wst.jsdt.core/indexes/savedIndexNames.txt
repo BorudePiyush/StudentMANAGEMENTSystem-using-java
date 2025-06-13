@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+G:\java project task\student management systems\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3916908562.index
+16068478.index
+1620776804.index
+608359627.index
+3613272783.index
+796782815.index
