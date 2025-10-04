@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/main/webapp/AddFaculty.jsp=UTF-8
+encoding//src/main/webapp/AddStudent.jsp=UTF-8
+encoding//src/main/webapp/AdminLogin.jsp=UTF-8
+encoding//src/main/webapp/ViewStudents.jsp=UTF-8
 encoding/<project>=UTF-8
