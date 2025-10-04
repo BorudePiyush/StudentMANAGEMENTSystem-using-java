@@ -1,4 +1,3 @@
-<!-- filepath: g:\java project task\student management systems\Student management systems\src\main\webapp\FacultyDashboard.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%@ page session="true" %>
@@ -33,7 +32,6 @@
             overflow-x: hidden;
         }
 
-        /* === Animations === */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -66,7 +64,6 @@
             50% { transform: translateY(-10px); }
         }
 
-        /* === Header === */
         .header {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -108,7 +105,6 @@
             position: relative;
         }
 
-        /* === Top Navigation === */
         .top-nav {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -175,7 +171,6 @@
             color: white;
         }
 
-        /* === Statistics Cards === */
         .stats-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -248,7 +243,6 @@
             --gradient: linear-gradient(135deg, #43e97b, #38f9d7);
         }
 
-        /* === Main Card === */
         .main-card {
             background: white;
             border-radius: 20px;
@@ -297,7 +291,6 @@
             gap: 10px;
         }
 
-        /* === Controls Section === */
         .controls-section {
             padding: 25px 30px;
             background: #f8f9fa;
@@ -340,7 +333,6 @@
             font-size: 1.1rem;
         }
 
-        /* === Action Buttons === */
         .btn-custom {
             padding: 10px 20px;
             border-radius: 50px;
@@ -399,7 +391,6 @@
             color: white;
         }
 
-        /* === Table Styling === */
         .table-container {
             padding: 30px;
             overflow-x: auto;
@@ -438,7 +429,6 @@
             transform: scale(1.01);
         }
 
-        /* === Action Buttons in Table === */
         .action-buttons {
             display: flex;
             gap: 8px;
@@ -481,7 +471,6 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        /* === Empty State === */
         .empty-state {
             text-align: center;
             padding: 60px 30px;
@@ -499,7 +488,6 @@
             margin-bottom: 10px;
         }
 
-        /* === Loading Animation === */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -535,7 +523,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* === Responsive Design === */
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2rem;
@@ -582,7 +569,6 @@
     </style>
 </head>
 <body>
-    <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="spinner"></div>
     </div>
@@ -594,7 +580,6 @@
             <p class="subtitle">Manage Faculty Members and Academic Information</p>
         </div>
 
-        <!-- Top Navigation -->
         <div class="top-nav">
             <div class="breadcrumb-nav">
                 <a href="index.html"><i class="fas fa-home"></i> Dashboard</a>
@@ -612,7 +597,6 @@
             </div>
         </div>
 
-        <!-- Welcome Message -->
         <div class="stats-container">
             <div class="stat-card faculty">
                 <div class="icon">
@@ -644,7 +628,6 @@
             </div>
         </div>
 
-        <!-- Main Card -->
         <div class="main-card">
             <div class="card-header-custom">
                 <div class="welcome-message">
@@ -662,7 +645,6 @@
                 </div>
             </div>
 
-            <!-- Controls Section -->
             <div class="controls-section">
                 <div class="search-container">
                     <input type="text" id="globalSearch" placeholder="Search faculty by name, email, subject...">
@@ -681,7 +663,6 @@
                 </div>
             </div>
 
-            <!-- Table Section -->
             <div class="table-container">
                 <%
                     int facultyCount = 0;
@@ -762,7 +743,6 @@
                         <%
                                 }
                                 
-                                // Count unique subjects
                                 ResultSet countRs = stmt.executeQuery("SELECT COUNT(DISTINCT subject) as subject_count FROM faculty");
                                 if (countRs.next()) {
                                     courseCount = countRs.getInt("subject_count");
@@ -802,7 +782,6 @@
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -832,35 +811,29 @@
         </div>
     </div>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
     
     <script>
-        // Set faculty and course counts
         var facultyCount = <%= facultyCount %>;
         var courseCount = <%= courseCount %>;
         
-        // Remove loading overlay when page loads
         window.addEventListener('load', function() {
             document.getElementById('loadingOverlay').classList.remove('show');
             updateCurrentTime();
             animateStats();
         });
 
-        // Update current time
         function updateCurrentTime() {
             var now = new Date();
             var timeString = now.toLocaleTimeString();
             document.getElementById('currentTime').textContent = timeString;
         }
 
-        // Update time every second
         setInterval(updateCurrentTime, 1000);
 
-        // Animate statistics
         function animateStats() {
             animateNumber('totalFaculty', facultyCount);
             animateNumber('totalStudents', 150); // This should come from actual student count
@@ -881,7 +854,6 @@
             }, 20);
         }
 
-        // Initialize DataTables
         $(document).ready(function() {
             if ($('#facultyTable').length > 0 && $('#facultyTable tbody tr').length > 0) {
                 var table = $('#facultyTable').DataTable({
@@ -906,14 +878,12 @@
                     ]
                 });
 
-                // Global search functionality
                 $('#globalSearch').on('keyup', function() {
                     table.search(this.value).draw();
                 });
             }
         });
 
-        // Delete confirmation
         function confirmDelete(facultyId, facultyName) {
             document.getElementById('facultyNameToDelete').textContent = facultyName;
             document.getElementById('confirmDeleteBtn').href = 'DeleteFaculty?id=' + facultyId;
@@ -922,13 +892,11 @@
             modal.show();
         }
 
-        // Refresh data
         function refreshData() {
             document.getElementById('loadingOverlay').classList.add('show');
             window.location.reload();
         }
 
-        // Export data
         function exportData() {
             var table = document.getElementById('facultyTable');
             if (!table || table.querySelectorAll('tbody tr').length == 0) {
@@ -967,7 +935,6 @@
             showNotification('Faculty data exported successfully!', 'success');
         }
 
-        // Notification system
         function showNotification(message, type) {
             var iconClass = 'info-circle';
             if (type == 'success') {
@@ -994,7 +961,6 @@
             }, 5000);
         }
 
-        // Add loading overlay for navigation
         var links = document.querySelectorAll('a');
         for (var i = 0; i < links.length; i++) {
             links[i].addEventListener('click', function(e) {
@@ -1007,7 +973,6 @@
             });
         }
 
-        // Handle URL parameters for notifications
         var urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('deleted') == 'true') {
             showNotification('Faculty deleted successfully!', 'success');
